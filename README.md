@@ -14,7 +14,7 @@ A tiny, zero-overhead set of C macros to write **clear, explicit** finite-state 
 * **Readable control-flow.** Named states, explicit transitions.
 * **Portable.** Standard C (C99+), no deps.
 
-Full documentation is in the `docs/fsm.md` file.
+Full documentation is in the <a href="docs/fsm.md"><b>Programmers manual</b></a>.
 
 ---
 
