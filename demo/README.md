@@ -1,0 +1,6 @@
+# fsm
+
+## Demos and examples 
+
+- <a href="uncomment.c"><b>uncomment.c</b></a>. A tool to remove comments from C source files. Look at the <a href="uncomment.dot">diagram</a> generated with the assistance of ChatGPT directly from the fsm source code.
+  

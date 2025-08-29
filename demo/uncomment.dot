@@ -1,0 +1,65 @@
+// Generated with ChatGPT and then edited
+// To visualize, use dot or past this diagram into
+// https://dreampuf.github.io/GraphvizOnline/
+
+digraph CCommentStripper {
+  rankdir=LR;
+  node [shape=oval, fontname="Helvetica"];
+
+  START [shape=plaintext];
+  code;
+  code_char [style="dashed,rounded"];
+  slash;
+  string;
+  escaped_str;
+  literal;
+  escaped_lit;
+  line_comment;
+  block_comment;
+  star;
+
+  // Entry
+  START -> code [label=""];
+
+  // code
+  code -> slash       [label="/"];
+  code -> code_char [label="  "];
+
+  // code_char
+  code_char -> string [label="\""];
+  code_char -> literal [label="\'"];
+  code_char -> code [label=" "];
+
+  // slash
+  slash -> line_comment [label="/"];
+  slash -> block_comment[label="*"];
+  slash -> code_char
+
+  // string
+  string -> escaped_str [label="\\"];
+  string -> code        [label="\""];
+  string -> string
+
+  // escaped string char
+  escaped_str -> string [label="  "];
+
+  // literal
+  literal -> escaped_lit  [label="\\"];
+  literal -> code         [label="\'"];
+  literal -> literal
+
+  // escaped literal char
+  escaped_lit -> literal [label="  "];
+
+  // line comment
+  line_comment -> code [label="newline"];
+  line_comment -> line_comment
+
+  // block comment
+  block_comment -> star [label="*"];
+  block_comment -> block_comment  [label="  "];
+
+  // star (inside block comment)
+  star -> code [label="/"];
+  star -> block_comment  [label="  "];
+}
