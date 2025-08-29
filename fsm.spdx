@@ -1,0 +1,11 @@
+SPDXVersion: SPDX-2.3
+DataLicense: CC0-1.0
+DocumentName: fsm
+DocumentNamespace: https://repo.dentato.com/fsm
+Creator: Person: Remo Dentato (rdentato@gmail.com)
+Created: 2025-08-29T10:25:42Z
+
+PackageName: fsm
+PackageVersion: 0.3.000-RC
+PackageHomePage: https://repo.dentato.com/fsm
+PackageLicenseDeclared: MIT
