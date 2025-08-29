@@ -2,4 +2,4 @@
 
 ## Documentation 
 
-- [`docs/fsm.md`](Programmers manual).
+- [docs/fsm.md](Programmers manual).
