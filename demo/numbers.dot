@@ -1,0 +1,37 @@
+digraph CIntegerFSM {
+  rankdir=LR;
+  node [shape=oval, fontname="Helvetica"];
+
+  // entry/exit
+  START [label="START"];
+  END   [label="END"];
+
+  // states
+  octal   [label="octal"];
+  hex     [label="hex"];
+  decimal [label="decimal"];
+
+
+  // START transitions
+  START -> decimal [label="+"];
+  START -> decimal [label="- {sign=-1}"];
+  START -> hex     [label= "'0x'"];
+  START -> octal   [label= "'0'" ];
+  START -> decimal [label="[1-9]"];
+  START -> END     [label="'Z'"];
+  START -> END     [label="'z'"];
+  START -> END     [label="'\\0'"];
+  START -> START   [label=" "];
+
+  // octal loop / exit
+  octal -> octal [label="[0-7]"];
+  octal -> END   [label=""];
+
+  // hex loop / exit
+  hex -> hex [label="[0-9A-Fa-f]"];
+  hex -> END [label=""];
+
+  // decimal loop / exit
+  decimal -> decimal [label="[0-9]"];
+  decimal -> END     [label=""];
+}

@@ -6,12 +6,13 @@ DIST=../dist
 
 CFLAGS=-I ../src -O2 -Wall
 
-all: uncomment
+all: uncomment numbers
 
 uncomment: uncomment.o
+numbers: numbers.o
 
 %.png:%.dot
 	dot -Tpng $< -o $*.png
 
 clean:
-	rm -f *.o uncomment
+	rm -f *.o uncomment numbers
