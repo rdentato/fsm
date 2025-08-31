@@ -11,9 +11,8 @@ digraph CCommentStripper {
   code_char [style="dashed,rounded"];
   slash;
   string;
-  escaped_str;
+  escaped;
   literal;
-  escaped_lit;
   line_comment;
   block_comment;
   star;
@@ -36,20 +35,18 @@ digraph CCommentStripper {
   slash -> code_char
 
   // string
-  string -> escaped_str [label="\\"];
+  string -> escaped     [label="\\"];
   string -> code        [label="\""];
   string -> string
 
-  // escaped string char
-  escaped_str -> string [label="  "];
+  // escaped 
+  escaped -> string  [label="\"", style="dashed"];
+  escaped -> literal [label="'", style="dashed"];
 
   // literal
-  literal -> escaped_lit  [label="\\"];
+  literal -> escaped      [label="\\"];
   literal -> code         [label="\'"];
   literal -> literal
-
-  // escaped literal char
-  escaped_lit -> literal [label="  "];
 
   // line comment
   line_comment -> code [label="newline"];

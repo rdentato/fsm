@@ -43,31 +43,27 @@ void uncomment(FILE *in, FILE *out)
      
     fsmstate(string) {
       if ((c = fgetc(in)) == EOF) fsmexit; 
-      if ((c == '\\')) fsmgoto(escaped_str);
+      if ((c == '\\')) fsmgoto(escaped);
       fputc(c,out);
       if (c == '"') fsmgoto(code);
       fsmgoto(string);
     }
    
-    fsmstate(escaped_str) {
-      fputc(c,out);
-      if ((c = fgetc(in)) == EOF) fsmexit; 
-      fputc(c,out);
-      fsmgoto(string);
-    }
-
     fsmstate(literal) {
       if ((c = fgetc(in)) == EOF) fsmexit; 
-      if ((c == '\\')) fsmgoto(escaped_lit);
+      if ((c == '\\')) fsmgoto(escaped);
       fputc(c,out);
       if (c == '\'') fsmgoto(code);
       fsmgoto(literal);
     }
-   
-    fsmstate(escaped_lit) {
-      fputc(c,out);
+
+    fsmstate(escaped) {
+      int quote;
+      quote = c;
+      fputc(quote, out);
       if ((c = fgetc(in)) == EOF) fsmexit; 
-      fputc(c,out);
+      fputc(c, out);
+      if (quote == '"') fsmgoto(string);
       fsmgoto(literal);
     }
 
